@@ -8,7 +8,7 @@ describe('book routes', () => {
     return setup(pool);
   });
 
-  it('should return list of books', () => {
+  it('should return list of books', async () => {
     const res = await request(app).get('/books');
     expect(res.body.length).toEqual(9);
     const hobbit = res.body.find((book) => book.id === '1');
