@@ -9,11 +9,14 @@ describe('book routes', () => {
   });
 
   it('should return list of books', async () => {
-    const res = await request(app).get('/books');
-    expect(res.body.length).toEqual(9);
-    const hobbit = res.body.find((book) => book.id === '1');
-    expect(hobbit).toHaveProperty('title', 'The Hobbit');
+    const res = await request(app).get('/books/1');
+    expect(res.body).toEqual({
+      title: expect.any(String),
+      released: expect.any(Number),
+      authors: expect.any(Array),
+    });
   });
+
   afterAll(() => {
     pool.end();
   });
