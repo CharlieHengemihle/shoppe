@@ -55,7 +55,7 @@ VALUES
   ('The Silmarillion', 1977)
 ;
 
-INSERT INTO combo(
+INSERT INTO combo (
     author_id,
     book_id
 )

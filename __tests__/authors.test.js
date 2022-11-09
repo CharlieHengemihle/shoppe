@@ -11,9 +11,19 @@ describe('authors routes', () => {
   it('should return list of authors', async () => {
     const res = await request(app).get('/authors');
     expect(res.body.length).toEqual(6);
-    const tolkien = res.body.find((author) => author.id === '1');
-    expect(tolkien).toHaveProperty('name', 'J.R.R. Tolkien');
   });
+
+  it('should return an author with list of books', async () => {
+    const res = await request(app).get('/authors/1');
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      name: expect.any(String),
+      dob: expect.any(String),
+      pob: expect.any(String),
+      books: expect.any(Array),
+    });
+  });
+
   afterAll(() => {
     pool.end();
   });
